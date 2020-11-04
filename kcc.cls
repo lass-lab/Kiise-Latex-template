@@ -33,7 +33,8 @@
 
 
 % package for footnotes
-\usepackage[parenthesis,hang]{dhucsfn}
+\usepackage[hang]{dhucsfn}
+\def\@KSCacknowledge{\gdef\@thefnmark{}\@footnotetext}
 
 
 % set section presentation
@@ -55,7 +56,7 @@
 \def\engtitle#1{\gdef\@engtitle{#1}}
 \def\engauthor#1{\gdef\@engauthor{#1}}
 \def\abstract#1{\gdef\@abstract{#1}}
-
+\def\acknowledge#1{\gdef\@acknowledge{#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 제목
@@ -88,6 +89,13 @@
 	\end{center}
 	\vspace{5mm}
 	]
+	\if@preprint
+	\else
+		\ifx\@acknowledge\undefined
+		\else
+			\@KSCacknowledge{\@acknowledge}
+		\fi
+	\fi
 }
 
 % format with dot '.' after the section number and before the section title
